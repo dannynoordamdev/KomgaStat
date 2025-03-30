@@ -1,0 +1,16 @@
+.warn {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 15px; 
+    background-color: #434343; 
+    color: #fff; 
+    position: fixed;
+    left: 100px;
+    right: 100px;
+    bottom: 0;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 60px;
+  }
+  
