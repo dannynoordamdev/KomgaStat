@@ -7,6 +7,7 @@ import "../Styling/Navbar.css";
 const Navbar = () => {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
+    const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -29,13 +30,24 @@ const Navbar = () => {
             <div className="navbar-left">
                 <Link to="/" className="logo">KomgaStat</Link>
             </div>
-           
-            <div className="navbar-right">
+
+            {/* Hamburger menu icon */}
+            <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+                ☰
+            </div>
+
+            <div className={`navbar-right ${menuOpen ? "open" : ""}`}>
+                
+                <a href="https://github.com/dannynoordamdev/komgastat" target="_blank" rel="noopener noreferrer">
+                    <i className="fab fa-github"></i>
+                </a>
+                
                 {user ? (
-                    <>
-                        <span>Welcome! {user.email}</span> 
-                        <button onClick={handleLogout}>Sign Out</button> 
-                    </>
+                    <div className="user-info">
+                        <span className="user-email">{user.email}</span> 
+                        <button onClick={handleLogout}>Sign Out</button>
+
+                    </div>
                 ) : (
                     <>
                         <Link to="/login" className="login">Login</Link>

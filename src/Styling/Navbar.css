@@ -2,8 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 0rem;
-  
+  padding: 0.5rem 1.5rem;
+  background-color: #222;
+  color: white;
 }
 
 .navbar-left .logo {
@@ -11,35 +12,54 @@
   font-weight: bold;
   text-decoration: none;
   color: white;
-  margin-left: 1.5rem;
 }
+
 .navbar-right {
   display: flex;
   align-items: center;
-  margin: 2%;
   gap: 15px;
 }
 
-.navbar-right .login {
-  color: white;
-  text-decoration: none;
-  margin-right: 1rem;;
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.navbar-right .cta-button {
-  color: white;
-  padding-right: 1.5rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
+.user-email {
+  font-size: 0.9rem;
+  color: #bbb;
+  word-break: break-word;
 }
 
-.cta-button:hover{
-  color: #0c8cc8;
-  
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
-.fab {
-  margin: 1rem;
-}
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
 
+  .navbar-right {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #333;
+    width: 100%;
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  .navbar-right.open {
+    display: flex;
+  }
+
+  .user-info {
+    flex-direction: column;
+  }
+}
