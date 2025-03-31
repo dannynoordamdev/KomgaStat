@@ -1,31 +1,23 @@
 import React from 'react'
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
-
-
-import './App.css'
-
+import Home from './Pages/Home'
+import Setup from './Pages/SetupPage'
+import Login from './Pages/Login'
 
 function App() {
-
   return (
-    <>
-    <Navbar/>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path='/setup' element={<Setup />} />
+        <Route path='/login' element={<Login />} />
 
-  
-
-    <div className='main-content'>
-      <h1 className='main-title'>Welcome to KomgaStat!</h1>
-      <p className='sub-title'>The way to visualize your comic reading habits!</p>
-      <p className='setup-komga'>Don't have a Komga server yet? <a href='https://komga.org'>Set one up now!</a></p>
-      <a href='/register' className='get-started-btn'>View Insights!</a>
-    </div>
-
-    <Footer/>
-    </>
+      </Routes>
+      <Footer />
+    </Router>
   )
 }
 
