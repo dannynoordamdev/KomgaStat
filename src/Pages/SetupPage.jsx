@@ -1,64 +1,84 @@
-import React, { useState } from "react";
-import { Link } from 'react-router-dom';
-import '../Styling/SetupPageStyling.css';
+import React, { useState, useEffect } from "react";
+import { auth, provider } from "/Firebase/firebaseConfig.js";
+import { createUserWithEmailAndPassword, signInWithPopup, onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom"; 
+import "../Styling/SetupPageStyling.css";
 
 const SetupComponentPage = () => {
-    const [step, setStep] = useState(1);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [error, setError] = useState("");
+    const navigate = useNavigate(); 
+
+    const handleRegister = async () => {
+        if (password !== confirmPassword) {
+            setError("Passwords do not match.");
+            return;
+        }
+
+        try {
+            await createUserWithEmailAndPassword(auth, email, password);
+            navigate("/dashboard"); 
+        } catch (error) {
+            setError(error.message);
+        }
+    };
+
+    const handleGoogleSignIn = async () => {
+        try {
+            await signInWithPopup(auth, provider);
+            navigate("/dashboard"); 
+        } catch (error) {
+            setError(error.message);
+        }
+    };
+
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser); 
+
+            if(currentUser){
+                navigate("/dashboard"); 
+            }
+        });
+    
+        return () => unsubscribe(); 
+
+       
+    }, []);
 
     return (
         <div className="main-content">
             <div className="setup-container">
-                {step === 1 ? (
-                    <>
-                        <h1>{step}: User Registration</h1>
+                <h1>Create an Account</h1>
 
-                        <div className="input-group">
-                            <label>Email:</label>
-                            <input type="email" />
-                        </div>
+                <div className="input-group">
+                    <label>Email:</label>
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                </div>
 
-                        <div className="input-group">
-                            <label>Name:</label>
-                            <input type="text" />
-                        </div>
+                <div className="input-group">
+                    <label>Password:</label>
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                </div>
 
-                        <div className="input-group">
-                            <label>Password:</label>
-                            <input type="password" />
-                        </div>
+                <div className="input-group">
+                    <label>Confirm Password:</label>
+                    <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                </div>
 
-                        <div className="input-group">
-                            <label>Re-enter Password:</label>
-                            <input type="password" />
-                        </div>
+                {error && <p className="error-message">{error}</p>}
 
-                        <button className="get-started-btn" onClick={() => setStep(2)}>Continue!</button>
+                <button className="get-started-btn" onClick={handleRegister}>Sign Up</button>
 
-                    </>
-                ) : (
-                    <>
-                        <h1>{step}: Server Initialization</h1>
+                <p>OR</p>
 
-                        <div className="input-group">
-                            <label>Server URL</label>
-                            <input type="text" placeholder="https://example.com/api/v1/series" />
-                        </div>
-
-                        <div className="input-group">
-                            <label>Username Komga Server</label>
-                            <input type="text" />
-                        </div>
-
-                        <div className="input-group">
-                            <label>Password Komga Server</label>
-                            <input type="password" />
-                        </div>
-
-                        <button className="get-started-btn">Continue!</button>
-
-                        <Link to="/security-info">How we handle your server password securely.</Link>
-                    </>
-                )}
+                <button className="google-signin-btn" onClick={handleGoogleSignIn}>
+                    Sign in with Google
+                </button>
             </div>
         </div>
     );

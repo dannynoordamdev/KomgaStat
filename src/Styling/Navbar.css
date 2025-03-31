@@ -17,6 +17,7 @@
   display: flex;
   align-items: center;
   margin: 2%;
+  gap: 15px;
 }
 
 .navbar-right .login {

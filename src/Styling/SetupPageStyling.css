@@ -68,13 +68,13 @@ h1{
 }
 
 
-.get-started-btn {
+.setup-container .get-started-btn {
     padding: 0.5rem 1rem;
     font-weight: bold;
     font-size: 1rem;
     width: 50%;
     background-color: #003554;
-
+    margin: auto;
 }
 
 .setup-container a {
