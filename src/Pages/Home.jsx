@@ -6,7 +6,7 @@ import '../Styling/App.css'
 
 function Home() {
   return (
-    <div className="main-content">
+    <div className="home-main-content">
       <h1 className="main-title">Welcome to KomgaStat!</h1>
       <p className="sub-title">The way to visualize your comic reading habits!</p>
       <p className="setup-komga">

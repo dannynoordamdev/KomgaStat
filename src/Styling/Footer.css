@@ -24,13 +24,15 @@
 @media (max-width: 600px) {
   .warn {
     font-size: 0.7rem;
+    left: 5%;
+    right: 5%;
   }
 }
 
 @media (max-width: 490px) {
   .warn {
     font-size: 0.7rem;
-    left: 10%;
-    right: 10%;
+    left: 5%;
+    right: 5%;
   }
 }
