@@ -2,15 +2,35 @@
     display: flex;
     justify-content: center; 
     align-items: center; 
-    padding: 15px; 
+    padding: 15px ; 
     background-color: #434343; 
     color: #fff; 
     position: fixed;
     left: 100px;
     right: 100px;
     bottom: 0;
-    font-size: 14px;
+    font-size: 1rem;
     text-align: center;
     border-radius: 60px;
   }
+
+@media (max-width: 768px) {
+  .warn {
+    font-size: 0.8rem;
+  }
+}
   
+
+@media (max-width: 600px) {
+  .warn {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 490px) {
+  .warn {
+    font-size: 0.7rem;
+    left: 10%;
+    right: 10%;
+  }
+}

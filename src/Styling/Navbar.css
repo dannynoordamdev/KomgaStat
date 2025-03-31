@@ -2,8 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0;
-  padding-top: 25px;
+  padding-top: 0rem;
   
 }
 
@@ -12,27 +11,31 @@
   font-weight: bold;
   text-decoration: none;
   color: white;
-  padding-left: 20px;
+  margin-left: 1.5rem;
 }
 .navbar-right {
   display: flex;
   align-items: center;
-  padding-right: 20px;
+  margin: 2%;
 }
 
 .navbar-right .login {
   color: white;
   text-decoration: none;
-  margin-right: 1rem;
+  margin-right: 1rem;;
 }
 
 .navbar-right .cta-button {
-  border: 1px solid #9C27B0;
   color: white;
-  padding: 0.5rem 1rem;
+  padding-right: 1.5rem;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
+}
+
+.cta-button:hover{
+  color: #0c8cc8;
+  
 }
 
 .fab {
