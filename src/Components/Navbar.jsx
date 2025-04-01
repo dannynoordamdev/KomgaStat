@@ -31,7 +31,6 @@ const Navbar = () => {
                 <Link to="/" className="logo">KomgaStat</Link>
             </div>
 
-            {/* Hamburger menu icon */}
             <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
                 ☰
             </div>

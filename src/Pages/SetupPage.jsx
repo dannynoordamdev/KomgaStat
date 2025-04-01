@@ -56,29 +56,27 @@ const SetupComponentPage = () => {
                 <h1>Create an Account</h1>
 
                 <div className="input-group">
-                    <label>Email:</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
 
                 <div className="input-group">
-                    <label>Password:</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
 
                 <div className="input-group">
-                    <label>Confirm Password:</label>
-                    <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                    <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                 </div>
 
                 {error && <p className="error-message">{error}</p>}
 
+                <button className="google-signin-btn" onClick={handleGoogleSignIn}>
+                    Or Sign up with Google
+                </button>
+
                 <button className="get-started-btn" onClick={handleRegister}>Sign Up</button>
 
-                <p>OR</p>
 
-                <button className="google-signin-btn" onClick={handleGoogleSignIn}>
-                    Sign in with Google
-                </button>
+                
             </div>
         </div>
     );

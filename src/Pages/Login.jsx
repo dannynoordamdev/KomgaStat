@@ -64,14 +64,14 @@ const Login = () => {
                 
 
                 {error && <p className="error-message">{error}</p>}
+                <button className="google-signin-btn" onClick={handleGoogleSignIn}>
+                    Or sign in with Google
+                </button>
 
                 <button className="get-started-btn" onClick={handleLogin}>Login</button>
 
-                <p>OR</p>
 
-                <button className="google-signin-btn" onClick={handleGoogleSignIn}>
-                    Sign in with Google
-                </button>
+                
             </div>
         </div>
     );

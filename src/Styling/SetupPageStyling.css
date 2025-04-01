@@ -5,7 +5,7 @@
     border-radius: 8px;
     display: flex;
     flex-direction:column;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .input-group {
@@ -24,8 +24,8 @@ h1{
 
 .input-group input {
     flex-grow: 1;
-    min-width: 200px; 
-    padding: 8px;
+    min-width: 300px; 
+    padding: 10px;
     border: 1px solid #ffffff;
     border-radius: 4px;
 }
@@ -51,7 +51,8 @@ h1{
     }
 
     .input-group input {
-        width: 100%; 
+        width: 100%;
+        padding: 5%; 
     }
 
     .setup-container {
@@ -64,8 +65,44 @@ h1{
 
     .setup-container .get-started-btn{
         font-size: 0.8rem;
+        margin: auto;
     }
 }
+
+@media (max-width: 400px) {
+    .input-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .input-group label {
+        width: 100%; 
+        margin-bottom: 5px;
+        font-size: 0.9rem; 
+    }
+
+    .input-group input {
+        width: 50%; 
+    }
+
+    .setup-container {
+        max-width: 100%; 
+        gap: 15px;
+    }
+
+    .setup-container h1{
+        font-size: 1rem;
+    }
+
+    .setup-container .get-started-btn{
+        font-size: 0.8rem;
+    }
+
+    .setup-container .google-signin-btn{
+        padding-top: 0px;
+    }
+}
+
 
 
 .setup-container .get-started-btn {
