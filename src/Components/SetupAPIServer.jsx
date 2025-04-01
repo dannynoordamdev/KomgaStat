@@ -2,63 +2,80 @@ import React, { useState, useEffect } from "react";
 import { getFirestore, doc, setDoc, getDoc, deleteField, updateDoc } from "firebase/firestore";
 import { auth } from "/Firebase/firebaseConfig.js"; 
 import { useNavigate } from "react-router-dom";
-import { getAuth } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 
 const db = getFirestore();
 
 const SetupAPIServer = () => {
     const [apiKey, setApiKey] = useState("");
-    const [retrievedKey, setRetrievedKey] = useState("");
+    const [retrievedKey, setRetrievedKey] = useState(null);  
+    const [user, setUser] = useState(null);
     const navigate = useNavigate(); 
 
-    
-    
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        });
+
+        return () => unsubscribe();
+    }, []);
 
     useEffect(() => {
+        if (!user) return; 
+
         const fetchApiKey = async () => {
-            const user = auth.currentUser;
-            if (!user) return;
+            try {
+                const userRef = doc(db, "users", user.uid);
+                const docSnap = await getDoc(userRef);
 
-            const userRef = doc(db, "users", user.uid);
-            const docSnap = await getDoc(userRef);
-
-            if (docSnap.exists() && docSnap.data().komgaApiKey) {
-                setRetrievedKey(docSnap.data().komgaApiKey);
+                if (docSnap.exists() && docSnap.data().komgaApiKey) {
+                    setRetrievedKey(docSnap.data().komgaApiKey);
+                } else {
+                    setRetrievedKey(""); 
+                }
+            } catch (error) {
+                console.error("Error fetching API key:", error);
             }
         };
 
         fetchApiKey();
-    }, []);
+    }, [user]); 
 
     const saveApiKey = async () => {
-        const user = auth.currentUser;
         if (!user) {
             alert("You need to be signed in!");
             navigate("/login"); 
             return;
         }
 
-        const userRef = doc(db, "users", user.uid);
-        await setDoc(userRef, { komgaApiKey: apiKey }, { merge: true });
+        try {
+            const userRef = doc(db, "users", user.uid);
+            await setDoc(userRef, { komgaApiKey: apiKey }, { merge: true });
 
-        setRetrievedKey(apiKey);
-        setApiKey("");
-        alert("API Key saved securely, setup completed!");
+            setRetrievedKey(apiKey);
+            setApiKey("");
+            alert("API Key saved securely, setup completed!");
+        } catch (error) {
+            console.error("Error saving API key:", error);
+        }
     };
 
     const removeApiKey = async () => {
-        const user = auth.currentUser;
         if (!user) {
             alert("You must be logged in!");
             navigate("/login"); 
             return;
         }
 
-        const userRef = doc(db, "users", user.uid);
-        await updateDoc(userRef, { komgaApiKey: deleteField() });
+        try {
+            const userRef = doc(db, "users", user.uid);
+            await updateDoc(userRef, { komgaApiKey: deleteField() });
 
-        setRetrievedKey(null);
-        alert("API Key removed!");
+            setRetrievedKey(""); 
+            alert("API Key removed!");
+        } catch (error) {
+            console.error("Error removing API key:", error);
+        }
     };
 
     return (

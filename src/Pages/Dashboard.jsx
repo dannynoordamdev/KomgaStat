@@ -2,7 +2,7 @@ import React from "react"
 import { auth } from "/Firebase/firebaseConfig.js"; 
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useState, useEffect } from "react";
-import "../Styling/App.css";
+import "../Styling/Dashboard.css";
 import SetupAPIServer from "../Components/SetupAPIServer";
 
 const Dashboard = () => {
@@ -18,10 +18,9 @@ const Dashboard = () => {
 
     return(
         <>
-        <div className="main-content">
+        <div className="dashboard-container">
 
         <h1>Dashboard</h1>
-        {user ? <p>Welcome on the dashboard, {user.email}</p> : <p>Loading or not signed in...</p>}
         <SetupAPIServer />
 
         </div>
