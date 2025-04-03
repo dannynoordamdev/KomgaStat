@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../Styling/App.css'
+import Footer from '../Components/Footer'
 
 
 
@@ -13,6 +14,7 @@ function Home() {
         Don't have a Komga server yet? <a href="https://komga.org">Set one up now!</a>
       </p>
       <Link to="/setup" className="get-started-btn">View Insights!</Link>
+      <Footer/>
     </div>
   )
 }

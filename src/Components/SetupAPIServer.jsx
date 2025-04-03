@@ -3,6 +3,7 @@ import { getFirestore, doc, setDoc, getDoc, deleteField, updateDoc } from "fireb
 import { auth } from "/Firebase/firebaseConfig.js"; 
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
+import '../Styling/Profile.css'
 
 const db = getFirestore();
 
@@ -55,6 +56,7 @@ const SetupAPIServer = () => {
             setRetrievedKey(apiKey);
             setApiKey("");
             alert("API Key saved securely, setup completed!");
+            window.location.reload();
         } catch (error) {
             console.error("Error saving API key:", error);
         }
@@ -73,28 +75,40 @@ const SetupAPIServer = () => {
 
             setRetrievedKey(""); 
             alert("API Key removed!");
+            window.location.reload();
+
         } catch (error) {
             console.error("Error removing API key:", error);
         }
     };
 
     return (
-        <div>
-            <h2>Setup Komga API Server</h2>
+        <div className="profile-container">
+            <hr/>
+            <p>Hosted URL of Komga server:</p>
+            <input 
+                        type="text" 
+                        placeholder="https://domain.com" 
+                        value={apiKey} 
+                        onChange={(e) => setApiKey(e.target.value)} 
+                    />
+
             {retrievedKey ? (
                 <>
-                    <p>Your API key is securely stored.</p>
                     <button onClick={removeApiKey}>Remove API Key</button>
                 </>
             ) : (
+
                 <>
+                    <p>Komga API key</p>
+
                     <input 
                         type="password" 
                         placeholder="Enter your Komga API key" 
                         value={apiKey} 
                         onChange={(e) => setApiKey(e.target.value)} 
                     />
-                    <button onClick={saveApiKey}>Save API Key</button>
+                    <button onClick={saveApiKey}>Save API Key + URL</button>
                 </>
             )}
         </div>
