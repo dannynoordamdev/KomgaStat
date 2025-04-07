@@ -65,6 +65,24 @@ html, body {
     color: #f0f0f0; /* Light text for the titles */
 }
 
+.series-grid{
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  padding-top: 2%;
+}
+
+.series-grid .series-title{
+  text-align: center;
+}
+
+
+
+
+
+
+
+
 @media (max-width: 1000px) {
     .dashboard-container h1 {
         font-size: 1.5rem;
@@ -72,6 +90,7 @@ html, body {
     .insight-title {
         font-size: 1rem;
     }
+
 }
 
 @media (max-width: 800px) {
