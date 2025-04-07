@@ -9,7 +9,9 @@ const db = getFirestore();
 
 const SetupAPIServer = () => {
     const [apiKey, setApiKey] = useState("");
+    const [komgaUrl, setKomgaUrl] = useState("");
     const [retrievedKey, setRetrievedKey] = useState(null);  
+    const [retrievedUrl, setRetrievedUrl] = useState(null);
     const [user, setUser] = useState(null);
     const navigate = useNavigate(); 
 
@@ -24,25 +26,28 @@ const SetupAPIServer = () => {
     useEffect(() => {
         if (!user) return; 
 
-        const fetchApiKey = async () => {
+        const fetchData = async () => {
             try {
                 const userRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(userRef);
 
-                if (docSnap.exists() && docSnap.data().komgaApiKey) {
-                    setRetrievedKey(docSnap.data().komgaApiKey);
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    setRetrievedKey(data.komgaApiKey || "");
+                    setRetrievedUrl(data.komgaUrl || "");
                 } else {
-                    setRetrievedKey(""); 
+                    setRetrievedKey("");
+                    setRetrievedUrl("");
                 }
             } catch (error) {
-                console.error("Error fetching API key:", error);
+                console.error("Error fetching data:", error);
             }
         };
 
-        fetchApiKey();
+        fetchData();
     }, [user]); 
 
-    const saveApiKey = async () => {
+    const saveConnectionInfo = async () => {
         if (!user) {
             alert("You need to be signed in!");
             navigate("/login"); 
@@ -51,18 +56,23 @@ const SetupAPIServer = () => {
 
         try {
             const userRef = doc(db, "users", user.uid);
-            await setDoc(userRef, { komgaApiKey: apiKey }, { merge: true });
+            await setDoc(userRef, { 
+                komgaApiKey: apiKey, 
+                komgaUrl: komgaUrl 
+            }, { merge: true });
 
             setRetrievedKey(apiKey);
+            setRetrievedUrl(komgaUrl);
             setApiKey("");
-            alert("API Key saved securely, setup completed!");
+            setKomgaUrl("");
+            alert("API Key and URL saved securely!");
             window.location.reload();
         } catch (error) {
-            console.error("Error saving API key:", error);
+            console.error("Error saving data:", error);
         }
     };
 
-    const removeApiKey = async () => {
+    const removeConnectionInfo = async () => {
         if (!user) {
             alert("You must be logged in!");
             navigate("/login"); 
@@ -71,44 +81,56 @@ const SetupAPIServer = () => {
 
         try {
             const userRef = doc(db, "users", user.uid);
-            await updateDoc(userRef, { komgaApiKey: deleteField() });
+            await updateDoc(userRef, { 
+                komgaApiKey: deleteField(),
+                komgaUrl: deleteField()
+            });
 
             setRetrievedKey(""); 
-            alert("API Key removed!");
+            setRetrievedUrl("");
+            alert("Connection info removed!");
             window.location.reload();
 
         } catch (error) {
-            console.error("Error removing API key:", error);
+            console.error("Error removing data:", error);
         }
     };
 
+    
+
     return (
         <div className="profile-container">
-            <hr/>
-            <p>Hosted URL of Komga server:</p>
-            <input 
-                        type="text" 
-                        placeholder="https://domain.com" 
-                        value={apiKey} 
-                        onChange={(e) => setApiKey(e.target.value)} 
-                    />
 
-            {retrievedKey ? (
+            {retrievedKey && retrievedUrl ? (
                 <>
-                    <button onClick={removeApiKey}>Remove API Key</button>
+                    <p>Connected to:&nbsp;<strong>{retrievedUrl}</strong></p>
+                    <p>API Key:&nbsp;<strong>{retrievedKey.slice(0, 3)}••••••••••••</strong></p>
+
+                    <button onClick={removeConnectionInfo}>Terminate Connection</button>
                 </>
             ) : (
-
                 <>
-                    <p>Komga API key</p>
+                            <h2>Komga API Setup</h2>
 
+                    <label>Komga Server URL</label>
+                    <input 
+                        type="url" 
+                        placeholder="https://your-komga-server.com" 
+                        value={komgaUrl} 
+                        onChange={(e) => setKomgaUrl(e.target.value)} 
+                        required
+                    />
+
+                    <label>Komga API Key</label> 
                     <input 
                         type="password" 
                         placeholder="Enter your Komga API key" 
                         value={apiKey} 
                         onChange={(e) => setApiKey(e.target.value)} 
+                        required
                     />
-                    <button onClick={saveApiKey}>Save API Key + URL</button>
+
+                    <button onClick={saveConnectionInfo}>Save API Key + URL</button>
                 </>
             )}
         </div>

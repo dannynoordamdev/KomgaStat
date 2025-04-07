@@ -44,6 +44,11 @@ const Navbar = () => {
         setMenuOpen(false); 
     };
 
+    const handleDashboard = () => {
+        navigate("/dashboard");  
+        setMenuOpen(false); 
+    };
+
     const handleLinkClick = () => {
         setMenuOpen(false); // Close menu when any link is clicked
     };
@@ -67,6 +72,7 @@ const Navbar = () => {
                     <div className="user-info">
                         <span className="user-email">{user.email}</span>
                         <button className="buttons" onClick={handleProfile}>Profile</button>
+                        <button className="buttons" onClick={handleDashboard}>Dashboad</button>
                         <button className="buttons logout-btn" onClick={handleLogout}>Sign Out</button>
                     </div>
                 ) : (

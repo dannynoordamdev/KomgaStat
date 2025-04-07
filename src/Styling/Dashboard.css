@@ -83,11 +83,13 @@ html, body {
     }
     .profilelink {
         font-size: 0.9rem;
+        text-align: center;
     }
 }
 
 @media (max-width: 490px) {
     .dashboard-container h1 {
-        font-size: 1.2rem;
+        font-size: 1.8rem;
     }
 }
+

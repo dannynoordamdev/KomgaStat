@@ -39,6 +39,8 @@
   cursor: pointer;
 }
 
+
+
 @media (max-width: 768px) {
   .hamburger {
     display: block;
@@ -63,8 +65,5 @@
     opacity: 1; 
     transform: translateY(0); 
   }
-
-  .user-info {
-    flex-direction: column;
-  }
+  
 }

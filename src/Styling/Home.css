@@ -1,0 +1,157 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; 
+  }
+  
+  
+  .home-main-content {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column;
+    min-height: calc(100vh - 150px); 
+    text-align: center;
+    padding: 0 15px; 
+  }
+
+  .home-main-content .main-title{
+    font-weight: 600;
+    font-size: 3.6rem;
+    margin: 0;
+  }
+
+  .home-main-content .sub-title{
+    font-weight: 300;
+    font-size: 1.9rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .home-main-content .get-started-btn{
+    background-color: #003554;
+    color: white;
+    padding: 0.76rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 2%;
+    font-size: 1.1rem;
+    width: 200px;
+  }
+
+  .home-main-content .setup-komga{
+    font-size: 1rem;
+    margin-top: 2.5%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  @media (max-width: 768px) {
+    .home-main-content h1{
+      font-size: 3rem;
+    }
+    .home-main-content .sub-title{
+      font-size: 1.3rem;
+      padding-top: 3%;
+    }
+    
+    .home-main-content .setup-komga{
+      font-size: 0.9rem;
+      margin-top: 2.5%;
+    }
+  
+    .home-main-content .get-started-btn{
+      font-size: 0.8rem;
+    }
+  
+  }
+    
+  
+  @media (max-width: 600px) {
+    .home-main-content h1{
+      font-size: 2.5rem;
+    }
+    .home-main-content .sub-title{
+      font-size: 1rem;
+      padding-top: 3%;
+    }
+    
+    .home-main-content .setup-komga{
+      font-size: 0.7rem;
+    }
+  
+    .home-main-content .get-started-btn{
+      font-size: 0.8rem;
+    }
+  }
+  
+  @media (max-width: 490px) {
+    .home-main-content h1{
+      font-size: 2rem;
+    }
+    .home-main-content .sub-title{
+      font-size: 0.9rem;
+      padding-top: 3%;
+    }
+    
+    .home-main-content .setup-komga{
+      font-size: 0.7rem;
+    }
+  
+    .home-main-content .get-started-btn{
+      font-size: 0.7rem;
+    }
+  }
+
+  
+  @media (max-width: 450px) {
+    .home-main-content .main-title{
+      font-size: 3.5rem;
+    }
+    .home-main-content .sub-title{
+      font-size: 1.5rem;
+      padding-top: 3%;
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+    
+    .home-main-content .setup-komga{
+        padding-top: 15%;
+      font-size: 1rem;
+    }
+  
+    .home-main-content .get-started-btn{
+      font-size: 1rem;
+      padding: 2%;
+      margin-top: 15%;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .home-main-content{
+        min-height: calc(100vh - 250px); 
+    }
+
+    .home-main-content .main-title{
+      font-size: 3rem;
+    }
+    .home-main-content .sub-title{
+      font-size: 1.1rem;
+      padding-top: 3%;
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+    
+    .home-main-content .setup-komga{
+      padding-top: 5%;
+      font-size: 0.7rem;
+    }
+  
+    .home-main-content .get-started-btn{
+      font-size: 1rem;
+      margin-top: 15%;
+    }
+  }
+  
+  

@@ -25,4 +25,10 @@ html, body {
     
 }
 
+@media (max-width: 768px) {
 
+.profile-container .success-message{
+    margin-left: 5%;
+}
+
+}

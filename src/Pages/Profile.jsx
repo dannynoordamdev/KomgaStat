@@ -63,19 +63,18 @@ const Dashboard = () => {
                 </div>
             ) : retrievedKey === "" ? (
                 <div>
-                    <p>There is no API key yet.</p>
+                    <p>There is no API key yet, feel free to setup the server connection using below form:</p>
+
                     <SetupAPIServer />
                 </div>
             ) : (
                 <div>
-                <p>There is a known API key.</p>
+                <p className="success-message">API connection between Komgastat and server has been established.</p>
                 <SetupAPIServer />
-                
+
                 </div>
 
             )}
-                <Link to="/dashboard" className="get-started-btn">Back to dashboard!</Link>
-                <a href="https://komga.org/">Unsure how to obtain an API key?</a>
             
         </div>
         
