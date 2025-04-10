@@ -1,0 +1,172 @@
+.card-container {
+  position: relative;
+  padding: 20px;
+  margin: 30px 0;
+  background: rgba(25, 25, 25, 0.85);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  overflow: auto;  
+  height: 300vh;
+}
+
+.series-grid {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #666 transparent;
+  position: relative;
+}
+
+.series-grid::after {
+  content: "";
+  position: sticky;
+  right: 0;
+  width: 30px;
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.5));
+  pointer-events: none;
+}
+
+.series-grid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.series-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.series-grid::-webkit-scrollbar-thumb {
+  background-color: #666;
+  border-radius: 20px;
+}
+
+.series-card {
+  flex: 0 0 180px;
+  background-color: #1e1e1e;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 330px;
+}
+
+.series-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.series-thumbnail {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 14px 14px 0 0;
+}
+
+.series-title {
+  padding: 10px 12px 4px;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #f1f1f1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.series-books {
+  padding: 0 12px 12px;
+  font-size: 13px;
+  color: #bbbbbb;
+  margin-top: auto;
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 40%;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.scroll-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.scroll-btn.left {
+  left: 10px;
+}
+
+.scroll-btn.right {
+  right: 10px;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+  color: #888;
+}
+
+.error {
+  color: #e53935;
+}
+
+h2 {
+  margin-bottom: 10px;
+  padding-top: 15px;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: #444;
+  margin: 15px 0;
+}
+
+.stat-container p {
+  padding-bottom: 20px;
+  display: block;
+  text-align: start;
+}
+
+.AI-Container{
+  padding-top: 50px;
+}
+
+.AI-Container p {
+  display: block;
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .series-card {
+    flex: 0 0 130px;
+    height: 260px;
+  }
+
+  .series-title {
+    font-size: 13px;
+  }
+
+  .series-books {
+    font-size: 11px;
+  }
+
+  .scroll-btn {
+    display: none;
+  }
+}

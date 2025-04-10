@@ -5,6 +5,8 @@ html, body {
     font-family: 'Arial', sans-serif;
     background-color: #121212; /* Dark background */
     color: #f0f0f0; /* Light text for contrast */
+    overflow: auto;  /* Allow vertical scrolling */
+    height: 300vh;
 }
 
 .dashboard-container {
@@ -23,94 +25,3 @@ html, body {
     font-size: 2rem;
     color: #f0f0f0; /* White text for header */
 }
-
-.profilelink {
-    font-size: 1.1rem;
-    color: #1e90ff; /* Light blue link */
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.profilelink:hover {
-    color: #3a92d2; /* Darker blue for hover */
-}
-
-.insights-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    max-width: 80vw;
-    margin: auto;
-    margin-top: 25px;
-    background-color: #1f1f1f; /* Dark card background */
-    border-radius: 12px;
-    padding: 20px;
-    padding-bottom: 250px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.356); /* Soft shadow for depth */
-}
-
-.insights-container .underline-title {
-    width: 80%;
-    border: 0;
-    border-top: 2px solid #3a3a3a; /* Lighter gray line */
-    margin-top: 15px;
-}
-
-.insight-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-    text-align: center;
-    color: #f0f0f0; /* Light text for the titles */
-}
-
-.series-grid{
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-  padding-top: 2%;
-}
-
-.series-grid .series-title{
-  text-align: center;
-}
-
-
-
-
-
-
-
-
-@media (max-width: 1000px) {
-    .dashboard-container h1 {
-        font-size: 1.5rem;
-    }
-    .insight-title {
-        font-size: 1rem;
-    }
-
-}
-
-@media (max-width: 800px) {
-    .dashboard-container {
-        font-size: 0.9rem;
-    }
-    .insight-title {
-        font-size: 0.9rem;
-    }
-    .profilelink {
-        font-size: 0.9rem;
-        text-align: center;
-    }
-}
-
-@media (max-width: 490px) {
-    .dashboard-container h1 {
-        font-size: 1.8rem;
-    }
-}
-
-
-
